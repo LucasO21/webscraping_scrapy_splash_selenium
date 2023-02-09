@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>XPath and CSS Selectors</title>
+</head>
+
+<body>
+    <h1>CSS Selectors simplified</h1>
+    <div class="intro">
+        <p>
+            I'm paragraph within a div with a class set to intro
+            <span id="location">I'm a span with ID set to location and i'm within a paragraph</span>
+        </p>
+        <p id="outside">I'm a paragraph with ID set to outside and i'm within a div with a class set to intro</p>
+    </div>
+    <p>Hi i'm placed immediately after a div with a class set to intro</p>
+    <span class='intro'>Div with a class attribute set to intro</span>
+
+    <ul id="items">
+        <li data-identifier="7">Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+
+    <a href="https://www.google.com">Google</a>
+    <a href="http://www.google.fr">Google France</a>
+
+    <p class='bold italic'>Hi, I have two classes</p>
+    <p class='bold'>Hi i'm bold</p>
+</body>
+
+</html>
+
+<!-- hive
+
+    # CSS SELECTORS
+
+    # notes
+    - ids belong to only one tag
+    - the same class can be set to multiple tags
+
+    # tag elements
+    - select h1 element                 - h1
+    - select tags with class of "intro" - .into
+    - select tags based on id           - #location
+        
+    * select div tag with class of "intro" - div.intro
+    * tag has 2 or more classes            - .bold.italic
+
+    # href
+    - href attr starts with 'https' - a[href^='https']
+    - href attr ends with 'fr'      - a[href$='fr']
+    - href attr is in the middle    - a[href*='google']
+
+
+    # list items
+    - li
+    - li[data-identifier=7]
+
+    # select elements based on position
+    - p elements inside div                  - div.intro p, span#location
+    - only p elements                        - div.intro > p
+    - p elements after div of class "intro"  - div.intro + p
+    - first li element                       - li:nth-child(1)
+    - first and third li element             - li:nth-child(1), li:nth-child(3)
+
+    # XPATH SELECTORS
+
+    # tag
+    - select h1 elements                        - //h1
+    - get p inside div of class "intro"         - //div[@class="intro"]/p
+    - get p inside div of class intro and outro - //div[@class="intro" or @class="outro"]/p
+    - get only text inside p tags               - //div[@class="intro" or @class="outro"]/p/text()
+    
+    # href
+    - select all href                               - //a/@href
+    - select all href that starts with https        - //a[starts-with(@href, "https")]
+    - select all href that ends with fr             - //a[ends-with(@href, "fr")]
+    - select all href that contains google          - //a[contains(@href, "google")]
+    - select all href that the text contains France - //a[contains(text(), "France")]
+    
+    # position
+    - first list item     - //ul[@id="items"]/li[1]
+    - first and last item - //ul[@id="items"]/li[position() = 1 or position() = 4]
+    - first and last item - //ul[@id="items"]/li[position() = 1 or position() = last()]
+
+    # child / parent
+    - get the parent of the p tag with id = unique - //p[@id = "unique"]/parent::div
+    - when we don't know what tag the parent is    - //p[@id = "unique"]/parent::node()
+    - get parent of parent                         - //p[@id = "unique"]/ancestor::node()
+    - get the p tag and ancestors                  - //p[@id = "unique"]/ancestor-or-self::node()
+    
+
+
+-- !hive
