@@ -1,9 +1,10 @@
 import scrapy
+import time
 
 
 class SpecialOffersSpider(scrapy.Spider):
     name = "special_offers"
-    allowed_domains = ["www.web.archive.org"]
+    allowed_domains = ["web.archive.org"]
     start_urls = ["https://web.archive.org/web/20190225123327/https://www.tinydeal.com/specials.html"]
 
     def parse(self, response):
@@ -16,4 +17,10 @@ class SpecialOffersSpider(scrapy.Spider):
                 
                 
             }
+            
+        next_page = response.xpath("//a[@class='nextPage']/@href").get()
+        
+        if next_page:
+            time.sleep(5)
+            yield scrapy.Request(url=next_page, callback=self.parse)
 
