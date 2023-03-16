@@ -16,13 +16,14 @@ class CharitiesSpider(scrapy.Spider):
             url               = charity.xpath("./@href").get()
             
             
-            # Follow each URL and call the `parse_charity_page` method to extract additional data
+            # follow each URL and call the `parse_charity_page` method to extract additional data
             yield scrapy.Request(url, callback = self.parse_charity_page, meta = {
                 "rank":              rank,
                 "name":              name,
                 "category":          category,
             })
             
+    # scrape additional data points        
     def parse_charity_page(self, response):
         
         rank                = response.meta["rank"]
@@ -37,23 +38,34 @@ class CharitiesSpider(scrapy.Spider):
         charitable_services = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[4]/span/div/div[2]/div/span[text()='Charitable Services']/following-sibling::span/text()").get().strip()
         mgt_and_general     = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[4]/span/div/div[2]/div/span[text()='Management & General']/following-sibling::span/text()").get().strip()
         fundraising         = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[4]/span/div/div[2]/div/span[text()='Fundraising']/following-sibling::span/text()").get().strip()
+        surplus_loss        = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[5]/span[2]/span/text()").get().strip()
+        net_assets          = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[6]/span[2]/span/text()").get().strip()
+        charitable_commitment = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[7]/span[2]/span/text()").get().strip()
+        fundraising_efficiency = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[8]/span[2]/span/text()").get().strip()
+        donor_dependency       = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[9]/span[2]/span/text()").get().strip()
+        highest_compensation   = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[10]/span[2]/span/text()").get().strip()        
          
          
         # final yield
         yield {            
-              "rank":                 rank
-            , "name":                 name
-            , "category":             category
-            , "headquarters":         headquarters
-            , "ceo":                  ceo
-            , "total_revenue":        total_revenue
-            , "private_donations":    private_donations
-            , "other_income":         other_income
-            , "total_expenses":       total_expenses
-            , "charitable_services":  charitable_services
-            , "management_&_general": mgt_and_general
-            , "fundraising":          fundraising
-            , "url":                  response.url               
+              "rank":                   rank
+            , "name":                   name
+            , "category":               category
+            , "headquarters":           headquarters
+            , "ceo":                    ceo
+            , "total_revenue":          total_revenue
+            , "private_donations":      private_donations
+            , "other_income":           other_income
+            , "total_expenses":         total_expenses
+            , "charitable_services":    charitable_services
+            , "management_&_general":   mgt_and_general
+            , "fundraising":            fundraising
+            , "surplus/loss":           surplus_loss
+            , "net_assets":             net_assets
+            , "charitable_commitment":  charitable_commitment
+            , "fundraising_efficiency": fundraising_efficiency
+            , "donor_dependency":       donor_dependency
+            , "highest_compensation":   highest_compensation
+            , "url":                    response.url               
         }
 
-# "//span[text()='Headquarters']/following-sibling::span/text()"
