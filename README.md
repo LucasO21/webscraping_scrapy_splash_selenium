@@ -1,4 +1,4 @@
-# Web Scraping with Scrapy Splash and Selenium in Python
+# Web Scraping with Python Scrapy Splash and Selenium
 
 ============================================================================================
 
