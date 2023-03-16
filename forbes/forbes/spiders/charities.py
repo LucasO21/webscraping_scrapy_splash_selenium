@@ -4,10 +4,16 @@ import scrapy
 class CharitiesSpider(scrapy.Spider):
     name = "charities"
     allowed_domains = ["www.forbes.com"]
-    start_urls = ["https://www.forbes.com/lists/top-charities"]
-
-    def parse(self, response):
-        
+    #start_urls = ["https://www.forbes.com/lists/top-charities"]
+    
+    # spoof request
+    def start_requests(self):
+        yield scrapy.Request(url = "https://www.forbes.com/lists/top-charities", callback = self.parse, headers = {
+            "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+        })
+    
+    # scrape first page
+    def parse(self, response):        
         for charity in response.xpath("//div[@class='table-row-group']/a[contains(@class, 'table-row active')]"):
             
             rank              = charity.xpath(".//div[@class='rank first table-cell    rank']/text()").get().strip()
@@ -15,17 +21,20 @@ class CharitiesSpider(scrapy.Spider):
             category          = charity.xpath(".//div[@class='industry  table-cell    category']/text()").get().strip()      
             url               = charity.xpath("./@href").get()
             
-            
             # follow each URL and call the `parse_charity_page` method to extract additional data
-            yield scrapy.Request(url, callback = self.parse_charity_page, meta = {
-                "rank":              rank,
-                "name":              name,
-                "category":          category,
-            })
+            yield scrapy.Request(
+                url, 
+                callback = self.parse_charity_page, 
+                headers = {"User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"},
+                meta = {
+                    "rank":         rank,
+                    "name":         name,
+                    "category":     category
+                }
+            )
             
     # scrape additional data points        
     def parse_charity_page(self, response):
-        
         rank                = response.meta["rank"]
         name                = response.meta["name"]
         category            = response.meta["category"]
@@ -43,11 +52,11 @@ class CharitiesSpider(scrapy.Spider):
         charitable_commitment = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[7]/span[2]/span/text()").get().strip()
         fundraising_efficiency = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[8]/span[2]/span/text()").get().strip()
         donor_dependency       = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[9]/span[2]/span/text()").get().strip()
-        highest_compensation   = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[10]/span[2]/span/text()").get().strip()        
+        highest_compensation   = response.xpath("//div[@class='listuser-content__block person-stats'][2]/div[10]/span[2]/span/text()").get().strip()    
          
          
         # final yield
-        yield {            
+        yield {       
               "rank":                   rank
             , "name":                   name
             , "category":               category
@@ -66,6 +75,6 @@ class CharitiesSpider(scrapy.Spider):
             , "fundraising_efficiency": fundraising_efficiency
             , "donor_dependency":       donor_dependency
             , "highest_compensation":   highest_compensation
-            , "url":                    response.url               
+            , "url":                    response.url            
         }
 
