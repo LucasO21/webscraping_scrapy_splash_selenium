@@ -12,7 +12,7 @@ If you would like to reproduce some of these projects, you will need to have [Py
 
 ## Requirements
 
-For reproducibility, see ```requirements.txt``` file Python packages/versions used in this project. To install the same set of packages, use the following command:
+See  ```requirements.txt```  file for Python packages/versions used in this project. To install the same set of packages, use the following command:
 
 ```pip install -r requirments.txt```
 
