@@ -1,6 +1,6 @@
 # Web Scraping with Python Scrapy Splash and Selenium
 
-============================================================================================
+====================================================================================
 
 This repository contains code and resources for learning web scraping with Scrapy Splash and Selenium in Python. The code examples are a combination of resources from the Udemy course [Modern Web Scraping with Python using Scrapy Splash Selenium]("https://www.udemy.com/course/web-scraping-in-python-using-scrapy-and-splash/") and personal projects.
 
