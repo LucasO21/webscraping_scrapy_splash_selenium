@@ -1,0 +1,202 @@
+[
+    {
+        "brand": "Jordan 4 Retro SB",
+        "name": "Pine Green",
+        "last_sale_price": "$390",
+        "last_sale_price_vs_retail_price": "$68",
+        "last_sale_price_vs_retail_price_pct": "(21%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Air Force 1 Low",
+        "name": "Tiffany & Co. 1837",
+        "last_sale_price": "$1,002",
+        "last_sale_price_vs_retail_price": "-$331",
+        "last_sale_price_vs_retail_price_pct": "(-25%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Jordan 3 Retro",
+        "name": "White Cement Reimagined",
+        "last_sale_price": "$290",
+        "last_sale_price_vs_retail_price": "$32",
+        "last_sale_price_vs_retail_price_pct": "(12%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "New Balance 990v6",
+        "name": "Action Bronson Baklava",
+        "last_sale_price": "$364",
+        "last_sale_price_vs_retail_price": "-$23",
+        "last_sale_price_vs_retail_price_pct": "(-5.9%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "MSCHF",
+        "name": "Big Red Boot",
+        "last_sale_price": "$602",
+        "last_sale_price_vs_retail_price": "-$88",
+        "last_sale_price_vs_retail_price_pct": "(-13%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Dr. Martens Jorge",
+        "name": "Pleasures",
+        "last_sale_price": "$143",
+        "last_sale_price_vs_retail_price": "-$54",
+        "last_sale_price_vs_retail_price_pct": "(-28%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low Retro",
+        "name": "White Black Panda (2021)",
+        "last_sale_price": "$161",
+        "last_sale_price_vs_retail_price": "$2",
+        "last_sale_price_vs_retail_price_pct": "(1.3%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low Retro",
+        "name": "White Black Panda (2021) (Women's)",
+        "last_sale_price": "$144",
+        "last_sale_price_vs_retail_price": "-$1",
+        "last_sale_price_vs_retail_price_pct": "(-0.7%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low",
+        "name": "Grey Fog",
+        "last_sale_price": "$175",
+        "last_sale_price_vs_retail_price": "$31",
+        "last_sale_price_vs_retail_price_pct": "(21%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low Retro",
+        "name": "White Black Panda (2021) (GS)",
+        "last_sale_price": "$127",
+        "last_sale_price_vs_retail_price": "-$13",
+        "last_sale_price_vs_retail_price_pct": "(-9.4%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Air Force 1 Low '07",
+        "name": "White",
+        "last_sale_price": "$125",
+        "last_sale_price_vs_retail_price": "$9",
+        "last_sale_price_vs_retail_price_pct": "(7.4%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Jordan 5 Retro",
+        "name": "UNC University Blue",
+        "last_sale_price": "$271",
+        "last_sale_price_vs_retail_price": "$24",
+        "last_sale_price_vs_retail_price_pct": "(9.7%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Air Force 1 Low SP",
+        "name": "AMBUSH Phantom",
+        "last_sale_price": "$252",
+        "last_sale_price_vs_retail_price": "-$3",
+        "last_sale_price_vs_retail_price_pct": "(-1.5%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low",
+        "name": "Industrial Blue Sashiko",
+        "last_sale_price": "$127",
+        "last_sale_price_vs_retail_price": "-$29",
+        "last_sale_price_vs_retail_price_pct": "(-19%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low",
+        "name": "Next Nature White Black Panda (Women's)",
+        "last_sale_price": "$134",
+        "last_sale_price_vs_retail_price": "$1",
+        "last_sale_price_vs_retail_price_pct": "(0.8%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low",
+        "name": "Light Orewood Brown Sashiko",
+        "last_sale_price": "$175",
+        "last_sale_price_vs_retail_price": "$7",
+        "last_sale_price_vs_retail_price_pct": "(3.8%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "adidas Samba Vegan",
+        "name": "White Gum",
+        "last_sale_price": "$198",
+        "last_sale_price_vs_retail_price": "$25",
+        "last_sale_price_vs_retail_price_pct": "(14%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Jordan 13 Retro",
+        "name": "Playoffs (2023)",
+        "last_sale_price": "$239",
+        "last_sale_price_vs_retail_price": "$9",
+        "last_sale_price_vs_retail_price_pct": "(3.9%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low",
+        "name": "Active Fuchsia (GS)",
+        "last_sale_price": "$140",
+        "last_sale_price_vs_retail_price": "(--)",
+        "last_sale_price_vs_retail_price_pct": "NA",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Jordan 1 Retro High OG",
+        "name": "True Blue",
+        "last_sale_price": "$157",
+        "last_sale_price_vs_retail_price": "-$21",
+        "last_sale_price_vs_retail_price_pct": "(-12%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "adidas Yeezy Slide",
+        "name": "Bone (2022 Restock)",
+        "last_sale_price": "$172",
+        "last_sale_price_vs_retail_price": "-$47",
+        "last_sale_price_vs_retail_price_pct": "(-21%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Dunk Low",
+        "name": "Summit White Midnight Navy",
+        "last_sale_price": "$146",
+        "last_sale_price_vs_retail_price": "-$19",
+        "last_sale_price_vs_retail_price_pct": "(-12%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Nike Air Force 1 Low",
+        "name": "Supreme White",
+        "last_sale_price": "$149",
+        "last_sale_price_vs_retail_price": "-$19",
+        "last_sale_price_vs_retail_price_pct": "(-12%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "adidas Yeezy Slide",
+        "name": "Onyx",
+        "last_sale_price": "$233",
+        "last_sale_price_vs_retail_price": "-$39",
+        "last_sale_price_vs_retail_price_pct": "(-14%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    },
+    {
+        "brand": "Jordan 1 Mid SE",
+        "name": "Space Jam",
+        "last_sale_price": "$151",
+        "last_sale_price_vs_retail_price": "-$21",
+        "last_sale_price_vs_retail_price_pct": "(-12%)",
+        "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+    }
+]
