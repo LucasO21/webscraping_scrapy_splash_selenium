@@ -1,102 +1,389 @@
 [
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/advertising-marketing-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/aerospace-defense/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/agricultural-commodities-milling/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/air-freight-couriers/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/airlines/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/alternative-power-generation/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/aluminum/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/apparel-footwear/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/apparel-footwear-retail/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/auto-parts-oem/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/automotive-aftermarket/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/beverages-alcoholic/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/beverages-non-alcoholic/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/biotechnology/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/broadcasting/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/building-products/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/cable-satellite-tv/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/casinos-gaming/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/catalog-specialty-distribution/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/chemicals-agricultural/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/chemicals-major-diversified/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/chemicals-specialty/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/coal/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/commercial-printing-forms/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/computer-communications/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/computer-peripherals/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/computer-processing-hardware/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/construction-materials/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/consumer-sundries/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/containers-packaging/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/contract-drilling/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/data-processing-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/department-stores/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/discount-stores/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/drugstore-chains/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electric-utilities/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electrical-products/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronic-components/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronic-equipment-instruments/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronic-production-equipment/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronics-distributors/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronics-appliance-stores/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronics-appliances/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/engineering-construction/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/environmental-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/finance-rental-leasing/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/financial-conglomerates/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/financial-publishing-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-distributors/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-retail/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-major-diversified/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-meat-fish-dairy/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-specialty-candy/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/forest-products/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/gas-distributors/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/home-furnishings/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/home-improvement-chains/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/homebuilding/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/hospital-nursing-management/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/hotels-resorts-cruise-lines/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/household-personal-care/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/industrial-conglomerates/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/industrial-machinery/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/industrial-specialties/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/information-technology-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/insurance-brokers-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/integrated-oil/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/internet-retail/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/internet-software-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/investment-banks-brokers/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/investment-managers/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/investment-trusts-mutual-funds/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/life-health-insurance/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/major-banks/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/major-telecommunications/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/managed-health-care/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/marine-shipping/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/media-conglomerates/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/medical-distributors/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/medical-specialties/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/medical-nursing-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/metal-fabrication/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/miscellaneous/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/miscellaneous-commercial-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/miscellaneous-manufacturing/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/motor-vehicles/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/movies-entertainment/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/multi-line-insurance/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/office-equipment-supplies/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oil-gas-pipelines/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oil-gas-production/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oil-refining-marketing/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oilfield-services-equipment/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-consumer-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-consumer-specialties/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-metals-minerals/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-transportation/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/packaged-software/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/personnel-services/"},
-{"link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/pharmaceuticals-generic/"}
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/advertising-marketing-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/aerospace-defense/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/agricultural-commodities-milling/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/air-freight-couriers/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/airlines/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/alternative-power-generation/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/aluminum/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/apparel-footwear/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/apparel-footwear-retail/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/auto-parts-oem/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/automotive-aftermarket/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/beverages-alcoholic/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/beverages-non-alcoholic/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/biotechnology/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/broadcasting/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/building-products/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/cable-satellite-tv/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/casinos-gaming/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/catalog-specialty-distribution/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/chemicals-agricultural/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/chemicals-major-diversified/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/chemicals-specialty/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/coal/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/commercial-printing-forms/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/computer-communications/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/computer-peripherals/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/computer-processing-hardware/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/construction-materials/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/consumer-sundries/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/containers-packaging/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/contract-drilling/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/data-processing-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/department-stores/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/discount-stores/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/drugstore-chains/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electric-utilities/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electrical-products/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronic-components/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronic-equipment-instruments/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronic-production-equipment/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronics-distributors/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronics-appliance-stores/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/electronics-appliances/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/engineering-construction/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/environmental-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/finance-rental-leasing/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/financial-conglomerates/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/financial-publishing-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-distributors/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-retail/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-major-diversified/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-meat-fish-dairy/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/food-specialty-candy/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/forest-products/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/gas-distributors/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/home-furnishings/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/home-improvement-chains/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/homebuilding/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/hospital-nursing-management/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/hotels-resorts-cruise-lines/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/household-personal-care/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/industrial-conglomerates/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/industrial-machinery/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/industrial-specialties/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/information-technology-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/insurance-brokers-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/integrated-oil/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/internet-retail/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/internet-software-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/investment-banks-brokers/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/investment-managers/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/investment-trusts-mutual-funds/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/life-health-insurance/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/major-banks/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/major-telecommunications/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/managed-health-care/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/marine-shipping/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/media-conglomerates/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/medical-distributors/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/medical-specialties/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/medical-nursing-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/metal-fabrication/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/miscellaneous/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/miscellaneous-commercial-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/miscellaneous-manufacturing/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/motor-vehicles/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/movies-entertainment/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/multi-line-insurance/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/office-equipment-supplies/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oil-gas-pipelines/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oil-gas-production/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oil-refining-marketing/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/oilfield-services-equipment/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-consumer-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-consumer-specialties/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-metals-minerals/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/other-transportation/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/packaged-software/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/personnel-services/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/pharmaceuticals-generic/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/pharmaceuticals-major/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/pharmaceuticals-other/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/precious-metals/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/property-casualty-insurance/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/publishing-books-magazines/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/publishing-newspapers/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/pulp-paper/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/railroads/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/real-estate-development/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/real-estate-investment-trusts/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/recreational-products/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/regional-banks/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/restaurants/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/savings-banks/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/semiconductors/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/services-to-the-health-industry/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/specialty-insurance/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/specialty-stores/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/specialty-telecommunications/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/steel/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/telecommunications-equipment/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/textiles/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/tobacco/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/tools-hardware/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/trucking/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/trucks-construction-farm-machinery/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/water-utilities/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/wholesale-distributors/"
+    },
+    {
+        "link": "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/wireless-telecommunications/"
+    }
 ]

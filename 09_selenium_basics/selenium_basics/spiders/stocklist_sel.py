@@ -44,16 +44,12 @@ class StocklistSelSpider(scrapy.Spider):
         # Click on the element
         load_more_botton.click()
         time.sleep(3)
-        
-        
-        
+               
         # Store html markup
-        self.html = driver.page_source
-        
+        self.html = driver.page_source        
         
         # Close driver
-        driver.close()
-        
+        driver.close()        
         
     # Parse 
     def parse(self, response):
