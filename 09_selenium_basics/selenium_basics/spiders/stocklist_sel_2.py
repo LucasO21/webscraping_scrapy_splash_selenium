@@ -14,6 +14,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains as AC
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import csv
+import json
 
 # Spider class
 class StocklistSelSpider(scrapy.Spider):
@@ -69,15 +71,62 @@ class StocklistSelSpider(scrapy.Spider):
     
     # Extract details method
     def parse_details(self, response):
+        
+        # Open url
         self.driver.get(response.url)
+        
+        # Scroll to `load more xpath` then click `load more`
+        while True:
+            try:
+                load_more_botton = self.driver.find_element_by_xpath("//button[@class='loadButton-Hg5JK_G3']")
+                actions = AC(self.driver)
+                actions.move_to_element(load_more_botton).perform()
+                load_more_botton.click()
+                time.sleep(3)
+            except:
+                break
+         
+        # Extract data    
         industry = self.driver.find_element_by_xpath("//h1[@class='tv-category-header__title-text']").text.strip()
         
-        # Extract additional data points
+        symbols = []
+        for symbol in self.driver.find_elements_by_xpath("//a[@class='apply-common-tooltip tickerNameBox-hMpTPJiS tickerName-hMpTPJiS']"):
+            symbols.append(symbol.text.strip())        
+            
+        company_name = []
+        for company in self.driver.find_elements_by_xpath( "//sup[@class='apply-common-tooltip tickerDescription-hMpTPJiS']"):
+            company_name.append(company.text.strip())      
+        
+       
+        # Yield data
         yield {
-            "link": response.url,
-            "industry": industry
-        }
+              #"link": response.url
+             "industry": industry
+            , "symbols": symbols
+            , "company": company_name
+    }
+    
+    
     
     # Close driver method
     def closed(self, reason):
         self.driver.quit()
+        
+        
+        # # Save Data        
+        # field_names = [
+        #      "link"
+        #     , "industry"
+        #     , "symbols"
+        # ]
+        
+        # # Write the scraped data to the output file in the specified format
+        # if self.output_format == 'csv':
+        #     with open(self.output_file, 'w', newline='') as f:
+        #         writer = csv.DictWriter(f, fieldnames=field_names)
+        #         writer.writeheader()
+        #         for item in self.items:
+        #             writer.writerow(item)
+        # elif self.output_format == 'json':
+        #     with open(self.output_file, 'w') as f:
+        #         json.dump(self.items, f)

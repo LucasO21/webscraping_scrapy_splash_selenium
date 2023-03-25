@@ -1,4 +1,4 @@
-# Scrapy settings for selenium_basics project
+# Scrapy settings for scrapy_selenium_basics project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "selenium_basics"
+BOT_NAME = "scrapy_selenium_basics"
 
-SPIDER_MODULES = ["selenium_basics.spiders"]
-NEWSPIDER_MODULE = "selenium_basics.spiders"
+SPIDER_MODULES = ["scrapy_selenium_basics.spiders"]
+NEWSPIDER_MODULE = "scrapy_selenium_basics.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+#USER_AGENT = "scrapy_selenium_basics (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -37,21 +37,21 @@ ROBOTSTXT_OBEY = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-DEFAULT_REQUEST_HEADERS = {
-   "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
-}
+#DEFAULT_REQUEST_HEADERS = {
+#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+#    "Accept-Language": "en",
+#}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "selenium_basics.middlewares.SeleniumBasicsSpiderMiddleware": 543,
+#    "scrapy_selenium_basics.middlewares.ScrapySeleniumBasicsSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
-# See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "selenium_basics.middlewares.SeleniumBasicsDownloaderMiddleware": 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_selenium.SeleniumMiddleware': 800
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -62,7 +62,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "selenium_basics.pipelines.SeleniumBasicsPipeline": 300,
+#    "scrapy_selenium_basics.pipelines.ScrapySeleniumBasicsPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,7 +92,6 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 # Selenium
-from shutil import which
 from webdriver_manager.chrome import ChromeDriverManager
 
 SELENIUM_DRIVER_NAME = "chrome"
