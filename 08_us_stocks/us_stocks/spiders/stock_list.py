@@ -1,32 +1,125 @@
+# SCRAPY SELENIUM SPIDER
 import scrapy
+# - 1: Extract links from "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/"
+# - 2: Follow each link
+# - 3: Extract additional data point on stock details
 
+
+# Packages        
+import scrapy
+from scrapy.selector import Selector
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait as WDW
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains as AC
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+import csv
+import json
+import pandas as pd
+
+
+# Spider method
 class StockListSpider(scrapy.Spider):
     name = "stock_list"
-    allowed_domains = "www.tradingview.com"
+    allowed_domains = ["www.tradingview.com"]
+    start_urls      = ["https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/"]
     
-    def start_requests(self):
-        yield scrapy.Request(
-            url      = "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-industry/", 
-            callback = self.parse, 
-            headers  = {"User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"}
-        )
+    # Driver init
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
     
-    
+    # Parse method (get links)    
     def parse(self, response):
-        for stock in response.xpath("//tr[@class='row-EdyDtqqh listRow']/td"):
+        self.driver.get(response.url)
+        
+        # Scroll to `load more xpath` then click `load more`
+        while True:
+            try:
+                load_more_botton = self.driver.find_element_by_xpath("//button[@class='loadButton-Hg5JK_G3']")
+                actions = AC(self.driver)
+                actions.move_to_element(load_more_botton).perform()
+                load_more_botton.click()
+                time.sleep(3)
+            except:
+                break
+        
+        # Store response    
+        resp = Selector(text=self.driver.page_source)
+        
+        # Extract all links
+        for stock in resp.xpath("//tr[@class='row-EdyDtqqh listRow']"):
+            link = response.urljoin(stock.xpath(".//td[@class='cell-TKkxf89L left-TKkxf89L cell-fixed-f5et_Mwd onscroll-shadow']/a/@href").get())
+            yield scrapy.Request(link, callback=self.parse_details)
+        
+        # ----
+        # Extract links (testing with 3 links)
+        # count = 0  # counter for number of links extracted
+        
+        # for stock in resp.xpath("//tr[@class='row-EdyDtqqh listRow']"):
+        #     if count >= 2:
+        #         break  # stop processing after the first 3 links
             
-            url     = response.urljoin(stock.xpath(".//a[@class='link-j5JxgHa0 apply-common-tooltip industryTickerCell-vVPXFiXD']/@href").get())         
+        #     link = response.urljoin(stock.xpath(".//td[@class='cell-TKkxf89L left-TKkxf89L cell-fixed-f5et_Mwd onscroll-shadow']/a/@href").get())
+                        
+        #     # Visit the link using selenium
+        #     yield scrapy.Request(link, callback = self.parse_details)
             
-            yield scrapy.Request(
-                url      = url,
-                callback = self.parse_stock_list,
-                headers  = {"User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"}
-            )
+        #     count += 1
+        # ----
     
     
-    def parse_stock_list(self, response):
-        industry = response.xpath("//h1[@class='tv-category-header__title-text']/text()").get().strip()
+    # Extract details method
+    def parse_details(self, response):
+        
+        # Open url
+        self.driver.get(response.url)
+        
+        # Scroll to `load more xpath` then click `load more`
+        while True:
+            try:
+                load_more_botton = self.driver.find_element_by_xpath("//button[@class='loadButton-Hg5JK_G3']")
+                actions = AC(self.driver)
+                actions.move_to_element(load_more_botton).perform()
+                load_more_botton.click()
+                time.sleep(3)
+            except:
+                break
+         
+        # Extract data           
+        symbols = []
+        for symbol in self.driver.find_elements_by_xpath("//a[@class='apply-common-tooltip tickerNameBox-hMpTPJiS tickerName-hMpTPJiS']"):
+            symbols.append(symbol.text.strip())        
             
+        company_name = []
+        for company in self.driver.find_elements_by_xpath( "//sup[@class='apply-common-tooltip tickerDescription-hMpTPJiS']"):
+            company_name.append(company.text.strip())      
+            
+        industry = []
+        for i in company_name:
+            industry.append(self.driver.find_element_by_xpath("//h1[@class='tv-category-header__title-text']").text.strip())
+            
+        sector = []
+        for i in company_name:
+            sector.append(self.driver.find_element_by_xpath("//*[@id='anchor-page-1']/div/div[1]/div/a[4]").text.strip())
+        
+       
+        # Yield data
         yield {
-            "industry": industry
-        }
+              #"link": response.url
+             "industry": industry
+            , "sector": sector
+            , "symbols": symbols
+            , "company": company_name
+        }    
+    
+    
+    # Close driver method
+    def closed(self, reason):
+        self.driver.quit()
+        

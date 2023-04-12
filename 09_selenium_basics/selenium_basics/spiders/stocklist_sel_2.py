@@ -58,7 +58,7 @@ class StocklistSelSpider(scrapy.Spider):
         count = 0  # counter for number of links extracted
         
         for stock in resp.xpath("//tr[@class='row-EdyDtqqh listRow']"):
-            if count >= 3:
+            if count >= 2:
                 break  # stop processing after the first 3 links
             
             link = response.urljoin(stock.xpath(".//td[@class='cell-TKkxf89L left-TKkxf89L cell-fixed-f5et_Mwd onscroll-shadow']/a/@href").get())
