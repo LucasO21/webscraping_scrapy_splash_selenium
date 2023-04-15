@@ -36,7 +36,7 @@ class CharitiesSpider(scrapy.Spider):
     # scrape additional data points        
     def parse_charity_page(self, response):
         rank                = response.meta["rank"]
-        name                = response.meta["name"]
+        charity_name        = response.meta["name"]
         category            = response.meta["category"]
         headquarters        = response.xpath("//div[@class='listuser-block__item'][2]/span[text()='Headquarters']/following-sibling::span/span/text()").get().strip()      
         ceo                 = response.xpath("//div[@class='listuser-block__item'][4]/span[text()='Top Person']/following-sibling::span/span/text()").get().strip()      
@@ -58,7 +58,7 @@ class CharitiesSpider(scrapy.Spider):
         # final yield
         yield {       
               "rank":                   rank
-            , "name":                   name
+            , "charity_name":           charity_name
             , "category":               category
             , "headquarters":           headquarters
             , "ceo":                    ceo
@@ -67,14 +67,14 @@ class CharitiesSpider(scrapy.Spider):
             , "other_income":           other_income
             , "total_expenses":         total_expenses
             , "charitable_services":    charitable_services
-            , "management_&_general":   mgt_and_general
+            , "management_general":     mgt_and_general
             , "fundraising":            fundraising
-            , "surplus/loss":           surplus_loss
+            , "surplus_loss":           surplus_loss
             , "net_assets":             net_assets
             , "charitable_commitment":  charitable_commitment
             , "fundraising_efficiency": fundraising_efficiency
             , "donor_dependency":       donor_dependency
             , "highest_compensation":   highest_compensation
-            , "url":                    response.url            
+            , "charity_url":            response.url            
         }
 
