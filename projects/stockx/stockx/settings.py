@@ -1,4 +1,4 @@
-# Scrapy settings for worldometers project
+# Scrapy settings for stockx project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,17 +7,17 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "worldometers"
+BOT_NAME = "stockx"
 
-SPIDER_MODULES = ["worldometers.spiders"]
-NEWSPIDER_MODULE = "worldometers.spiders"
+SPIDER_MODULES = ["stockx.spiders"]
+NEWSPIDER_MODULE = "stockx.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "worldometers (+http://www.yourdomain.com)"
+#USER_AGENT = "us_stocks (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -37,22 +37,21 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-#    "Accept-Language": "en",
-#}
+DEFAULT_REQUEST_HEADERS = {
+   "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36"
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "worldometers.middlewares.WorldometersSpiderMiddleware": 543,
+#    "us_stocks.middlewares.UsStocksSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "worldometers.middlewares.WorldometersDownloaderMiddleware": 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_selenium.SeleniumMiddleware': 800
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -62,11 +61,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   "worldometers.pipelines.WorldometersPipeline": 300
-}
-
-MONGO_URI = "Hello World"
+#ITEM_PIPELINES = {
+#    "us_stocks.pipelines.UsStocksPipeline": 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -93,3 +90,12 @@ MONGO_URI = "Hello World"
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+
+# Selenium
+from webdriver_manager.chrome import ChromeDriverManager
+
+SELENIUM_DRIVER_NAME = "chrome"
+#SELENIUM_DRIVER_EXECUTABLE_PATH = "../chromedriver"
+SELENIUM_DRIVER_EXECUTABLE_PATH = ChromeDriverManager().install()
+SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox

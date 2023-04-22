@@ -10,5 +10,8 @@
 
     "git.ignoreLimitWarning": true,
     "editor.fontSize": 11,
-    "jupyter.interactiveWindow.textEditor.executeSelection": false
+    "jupyter.interactiveWindow.textEditor.executeSelection": false,
+
+    "explorer.autoReveal": false
+
 }

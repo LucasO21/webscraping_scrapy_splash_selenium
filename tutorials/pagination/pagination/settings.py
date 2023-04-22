@@ -1,4 +1,4 @@
-# Scrapy settings for worldometers project
+# Scrapy settings for pagination project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "worldometers"
+BOT_NAME = "pagination"
 
-SPIDER_MODULES = ["worldometers.spiders"]
-NEWSPIDER_MODULE = "worldometers.spiders"
+SPIDER_MODULES = ["pagination.spiders"]
+NEWSPIDER_MODULE = "pagination.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "worldometers (+http://www.yourdomain.com)"
+#USER_AGENT = "pagination (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "worldometers.middlewares.WorldometersSpiderMiddleware": 543,
+#    "pagination.middlewares.PaginationSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "worldometers.middlewares.WorldometersDownloaderMiddleware": 543,
+#    "pagination.middlewares.PaginationDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -62,11 +62,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   "worldometers.pipelines.WorldometersPipeline": 300
-}
-
-MONGO_URI = "Hello World"
+#ITEM_PIPELINES = {
+#    "pagination.pipelines.PaginationPipeline": 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
