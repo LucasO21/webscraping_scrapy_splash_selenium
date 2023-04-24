@@ -95,10 +95,28 @@ class Vehicles2Spider(scrapy.Spider):
         for vehicle_info in resp.xpath("//div[@class='article-content']"):
             name = vehicle_info.xpath(".//h2[5]/text()").get(default = "NA").strip()
             manufacturer = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Vehicle Class')]/text()").get(default = "NA").strip()
-        
+            acquisition = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Acquisition')]/text()").get(default = "NA").strip()
+            storage = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Storage')]/text()").get(default = "NA").strip()
+            modification = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Modifications')]/text()").get(default = "NA").strip()
+            sell = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Sell')]/text()").get(default = "NA").strip()
+            sell_price = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '], 'Sell Price')]/span[@class='field-value']/text()").get(default = "NA").strip()
+            sell_price_fully_upgraded = vehicle_info.xpath(".//dl//dd[contains(span[@class='field-label '], 'Sell Price')]/span[@class='field-value']/small/text()").get(default = "NA").strip()
+            race_availability = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Race Availability')]/text()").get(default = "NA").strip()
+            top_speed = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '],  'Top Speed')]/span[2]/text()").get(default = "NA").strip()
+            based_on = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '],  'Based on')]/span[2]/text()").get(default = "NA").strip()
+                    
             yield {
-                  "name": name,
-                  "manufacturer": manufacturer
+                    "name": name, 
+                    "manufacturer": manufacturer, 
+                    "acquisition": acquisition, 
+                    "storage": storage, 
+                    "modification": modification, 
+                    "sell": sell, 
+                    "sell_price": sell_price, 
+                    "sell_price_fully_upgraded": sell_price_fully_upgraded, 
+                    "race_availability": race_availability, 
+                    "top_speed": top_speed, 
+                    "based_on": based_on
             }   
         
 
@@ -106,4 +124,4 @@ class Vehicles2Spider(scrapy.Spider):
     def spider_closed(self, reason):
         self.driver.quit()
         
-        
+ 
