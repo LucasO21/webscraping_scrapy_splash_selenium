@@ -61,9 +61,10 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "us_stocks.pipelines.UsStocksPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "gtabase.pipelines.GtabasePipeline": 300,
+   "gtabase.pipelines.GtabasePipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -96,6 +97,5 @@ FEED_EXPORT_ENCODING = "utf-8"
 from webdriver_manager.chrome import ChromeDriverManager
 
 SELENIUM_DRIVER_NAME = "chrome"
-#SELENIUM_DRIVER_EXECUTABLE_PATH = "../chromedriver"
 SELENIUM_DRIVER_EXECUTABLE_PATH = ChromeDriverManager().install()
 SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox

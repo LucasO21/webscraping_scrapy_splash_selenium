@@ -7,6 +7,6 @@
 
 # Check For & Close Any Headless Drivers
 
-* Check for open headless drivers: ``` ps aux | grep "chromedriver ```
+* Check for open headless drivers: ``` ps aux | grep "chromedriver" ```
 
-* Quit all open headless drivers: ``` pkill -f "chromedriver ```
+* Quit all open headless drivers: ``` "pkill -f "chromedriver" ```

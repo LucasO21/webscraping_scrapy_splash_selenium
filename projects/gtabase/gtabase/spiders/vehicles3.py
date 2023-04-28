@@ -17,14 +17,13 @@ import itertools
 import time
 import re
 from bs4 import BeautifulSoup
-import logging
 
 
 # # Spider Method
-class Vehicles2Spider(scrapy.Spider):
+class Vehicles3Spider(scrapy.Spider):
     name            = "vehicles2"
     allowed_domains = ["gtabase.com"]
-    start_urls      = ["https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc"]
+    #start_urls      = ["https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc"]
 
     # Init Method
     def __init__(self, *args, **kwargs):
@@ -47,7 +46,6 @@ class Vehicles2Spider(scrapy.Spider):
         
         # Get Driver
         self.driver.get(response.url)
-        time.sleep(5)
         
         # Start Loop
         while True:
@@ -58,7 +56,7 @@ class Vehicles2Spider(scrapy.Spider):
                 # - Grab links
                 links = [card.find('a', class_='product-item-link')['href'] for card in soup.find_all('div', class_ = lambda x: x and x.startswith('item_'))]
                 links = ["https://www.gtabase.com/" + i for i in links]
-                links = links[:2]                
+                # links = links[:2]                
                                     
                 # vehicle_card = soup.find_all('div', class_ = lambda x: x and x.startswith('item_'))
 
@@ -77,12 +75,10 @@ class Vehicles2Spider(scrapy.Spider):
                     try:
                         next_button = self.driver.find_element("xpath", "//a[@class='page action next']")
                         next_button.click()
-                    except Exception as e:
-                        logging.error(f"DID NOT CLICK ON NEXT PAGE.")
-                        break   
-                    
-                    WDW(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'product') and contains(@class, 'item') and contains(@class, 'ln-element')]")))     
-                          
+                        WDW(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'product') and contains(@class, 'item') and contains(@class, 'ln-element')]")))     
+                        time.sleep(5)
+                    except:
+                        break         
 
             # - Exception Handling
             except Exception as e:

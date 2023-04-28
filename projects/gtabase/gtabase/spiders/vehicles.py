@@ -105,23 +105,38 @@ from selenium.webdriver.common.action_chains import ActionChains as AC
 from webdriver_manager.chrome import ChromeDriverManager
 import itertools
 import time
+from scrapy.linkextractors import LinkExtractor
 
 
 # Spider Method
 class VehiclesSpider(scrapy.Spider):
     name = "vehicles"
     allowed_domains = ["gtabase.com"]
-    start_urls = ["https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc&page=1"]
+    start_urls = ["https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc&page=2"]
     
     # Initialize Counter
-    counter = 0
+    # counter = 0
 
-     # Driver Init
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # Driver Init
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     chrome_options = Options()
+    #     chrome_options.add_argument("--headless")
+    #     self.driver = webdriver.Chrome(ChromeDriverManager().install(), options = chrome_options)
+        
+    # Start Request
+    def start_requests(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options = chrome_options)
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+
+        yield SeleniumRequest(
+            url       = 'https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc&page=2',
+            callback  = self.parse,
+            wait_time = 5,
+            # wait_until=EC.presence_of_element_located((By.XPATH, "//a[@class='page']")),
+            meta      = {'driver': driver}
+        )
         
         
      # Parse Method (Get Links)
@@ -158,20 +173,20 @@ class VehiclesSpider(scrapy.Spider):
             
             
         # Increment Counter / Check if Counter is <= 3
-        self.counter += 1
-        if self.counter < 4:
+        # self.counter += 1
+        # if self.counter < 4:
 
-        # Get Next Page URL & Callback parse_details
-            next_page = response.xpath("(//a[@title='Next'])[2]/@href").get()
-            if next_page:
-                absolute_url = f"https://www.gtabase.com/grand-theft-auto-v/vehicles/{next_page}"
-                yield SeleniumRequest(
-                    url = absolute_url,
-                    wait_time = 5,
-                    callback = self.parse_details
-                )
-            else:
-                self.log("REACHED PAGE LIMIT, SPIDER STOPPED")
+        # # Get Next Page URL & Callback parse_details
+        #     next_page = response.xpath("(//a[@title='Next'])[2]/@href").get()
+        #     if next_page:
+        #         absolute_url = f"https://www.gtabase.com/grand-theft-auto-v/vehicles/{next_page}"
+        #         yield SeleniumRequest(
+        #             url = absolute_url,
+        #             wait_time = 5,
+        #             callback = self.parse_details
+        #         )
+        #     else:
+        #         self.log("REACHED PAGE LIMIT, SPIDER STOPPED")
         
     # Close Spider    
     def spider_closed(self, reason):
