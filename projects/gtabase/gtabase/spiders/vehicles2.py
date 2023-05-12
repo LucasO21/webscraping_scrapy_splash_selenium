@@ -12,11 +12,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains as AC
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
 from scrapy.http import HtmlResponse
 import itertools
 import time
 import re
-from bs4 import BeautifulSoup
 import logging
 
 
@@ -50,22 +50,20 @@ class Vehicles2Spider(scrapy.Spider):
         time.sleep(5)
         
         # Start Loop
+        iteration = 0
+        
         while True:
             try:
+                iteration +=1
+                
                 # - Grab HTML
                 soup = BeautifulSoup(self.driver.page_source, 'lxml')
 
                 # - Grab links
                 links = [card.find('a', class_='product-item-link')['href'] for card in soup.find_all('div', class_ = lambda x: x and x.startswith('item_'))]
                 links = ["https://www.gtabase.com/" + i for i in links]
-                links = links[:2]                
-                                    
-                # vehicle_card = soup.find_all('div', class_ = lambda x: x and x.startswith('item_'))
-
-                # for vehicle in vehicle_card:
-                #     vehicle_link = "https://www.gtabase.com/" + vehicle.find('a', class_ = 'product-item-link')['href']
-                #     #vehicle_link = vehicle_link[:2]
-                                    
+                links = links[:5] # only extracting info for first 5 cars on each page                
+                                                                     
                 # - Yield Link
                 for link in links:
                     yield SeleniumRequest(url = link, callback = self.parse_items)                
@@ -75,10 +73,10 @@ class Vehicles2Spider(scrapy.Spider):
                     break
                 else:
                     try:
-                        next_button = self.driver.find_element("xpath", "//a[@class='page action next']")
+                        next_button = self.driver.find_element("xpath", "(//li/a[@class='page action next'])[2]/span")
                         next_button.click()
                     except Exception as e:
-                        logging.error(f"DID NOT CLICK ON NEXT PAGE.")
+                        logging.error(f"Error in iteration {iteration}: DID NOT CLICK ON NEXT PAGE. {e}")
                         break   
                     
                     WDW(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'product') and contains(@class, 'item') and contains(@class, 'ln-element')]")))     
@@ -100,30 +98,31 @@ class Vehicles2Spider(scrapy.Spider):
         
         # - Extract Items
         for vehicle_info in resp.xpath("//div[@class='article-content']"):
-            vehicle_name = vehicle_info.xpath(".//h2[5]/text()").get(default = "NA").strip()
-            manufacturer = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Vehicle Class')]/text()").get(default = "NA").strip()
-            acquisition = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Acquisition')]/text()").get(default = "NA").strip()
-            storage = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Storage')]/text()").get(default = "NA").strip()
-            modification = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Modifications')]/text()").get(default = "NA").strip()
-            sell = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Sell')]/text()").get(default = "NA").strip()
-            sell_price = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '], 'Sell Price')]/span[@class='field-value']/text()").get(default = "NA").strip()
+            vehicle_name              = vehicle_info.xpath(".//h2[@class='module']/text()").get(default = "NA").strip()
+            manufacturer              = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Vehicle Class')]/text()").get(default = "NA").strip()
+            acquisition               = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Acquisition')]/text()").get(default = "NA").strip()
+            storage                   = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Storage')]/text()").get(default = "NA").strip()
+            modification              = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Modifications')]/text()").get(default = "NA").strip()
+            sell                      = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Sell')]/text()").get(default = "NA").strip()
+            sell_price                = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '], 'Sell Price')]/span[@class='field-value']/text()").get(default = "NA").strip()
             sell_price_fully_upgraded = vehicle_info.xpath(".//dl//dd[contains(span[@class='field-label '], 'Sell Price')]/span[@class='field-value']/small/text()").get(default = "NA").strip()
-            race_availability = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Race Availability')]/text()").get(default = "NA").strip()
-            top_speed = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '],  'Top Speed')]/span[2]/text()").get(default = "NA").strip()
-            based_on = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '],  'Based on')]/span[2]/text()").get(default = "NA").strip()
-                    
+            race_availability         = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Race Availability')]/text()").get(default = "NA").strip()
+            top_speed                 = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '],  'Top Speed')]/span[2]/text()").get(default = "NA").strip()
+            based_on                  = vehicle_info.xpath(".//dl/dd[contains(span[@class='field-label '],  'Based on')]/span[2]/text()").get(default = "NA").strip()
+            
+            # - Yield Items       
             yield {
                     "vehicle_name": vehicle_name, 
                     "manufacturer": manufacturer, 
                     "acquisition": acquisition, 
-                    "storage": storage, 
-                    "modification": modification, 
-                    "sell": sell, 
-                    "sell_price": sell_price, 
+                    "storage":                   storage, 
+                    "modification":              modification, 
+                    "sell":                      sell, 
+                    "sell_price":                sell_price, 
                     "sell_price_fully_upgraded": sell_price_fully_upgraded, 
-                    "race_availability": race_availability, 
-                    "top_speed": top_speed, 
-                    "based_on": based_on
+                    "race_availability":         race_availability, 
+                    "top_speed":                 top_speed, 
+                    "based_on":                  based_on
             }   
         
 
@@ -131,6 +130,6 @@ class Vehicles2Spider(scrapy.Spider):
     def spider_closed(self, reason):
         self.driver.quit()
         
- ####### END SPIDER #################################################################
+ ####### END SPIDER ############################################################################################
  
  

@@ -105,14 +105,14 @@ from selenium.webdriver.common.action_chains import ActionChains as AC
 from webdriver_manager.chrome import ChromeDriverManager
 import itertools
 import time
-from scrapy.linkextractors import LinkExtractor
-
+import logging
+import re
 
 # Spider Method
 class VehiclesSpider(scrapy.Spider):
-    name = "vehicles"
+    name            = "vehicles"
     allowed_domains = ["gtabase.com"]
-    start_urls = ["https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc&page=2"]
+    # start_urls    = ["https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc&page=2"]
     
     # Initialize Counter
     # counter = 0
@@ -128,69 +128,74 @@ class VehiclesSpider(scrapy.Spider):
     def start_requests(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
         yield SeleniumRequest(
-            url       = 'https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc&page=2',
+            url       = "https://www.gtabase.com/grand-theft-auto-v/vehicles/#sort=attr.ct3.frontend_value&sortdir=desc",
             callback  = self.parse,
-            wait_time = 5,
+            wait_time = 5
             # wait_until=EC.presence_of_element_located((By.XPATH, "//a[@class='page']")),
-            meta      = {'driver': driver}
+            # meta      = {'driver': driver}
         )
         
         
      # Parse Method (Get Links)
     def parse(self, response):
+        
+        # - Get URL
         self.driver.get(response.url)
         
         # Scroll Till The Middle of the Page
-        viewport_height = self.driver.execute_script("return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);")
-        self.driver.execute_script(f"window.scrollTo(0, {viewport_height/2});")
+        # viewport_height = self.driver.execute_script("return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);")
+        # self.driver.execute_script(f"window.scrollTo(0, {viewport_height/2});")
         
         # Store Response
         resp = Selector(text=self.driver.page_source)
         
         # Extract Links
-        for i, vehicle_card in itertools.islice(enumerate(resp.xpath("//div[contains(@class, 'product') and contains(@class, 'item') and contains(@class, 'ln-element')]")), 4): # Testing With 4 Links       
+        for i, vehicle_card in itertools.islice(enumerate(resp.xpath("//div[contains(@class, 'product') and contains(@class, 'item') and contains(@class, 'ln-element')]")), 2): # Testing With 4 Links       
             link = response.urljoin(vehicle_card.xpath(".//a[contains(@class, 'product') and contains(@class, 'item-link')]/@href").get())
-            yield scrapy.Request(link, callback = self.parse_details)
+            yield SeleniumRequest(url = link, callback = self.parse_details)
              
     # Extract Vehicle Details
     def parse_details(self, response):
         
-        # Open URL
+        # - Open URL
         self.driver.get(response.url)
         
+        # - Store Response
+        resp = Selector(text = self.driver.page_source)
+        
         # Extract Data
-        for vehicle_info in response.xpath("//div[@class='article-content']"):
-            name = response.xpath(".//h2[5]/text()").get(default = "NA").strip()
-            manufacturer = response.xpath(".//dl/dd//span//a[contains(@title, 'Vehicle Class')]/text()").get(default = "NA").strip()
+        for vehicle_info in resp.xpath("//div[@class='article-content']"):
+            name         = vehicle_info.xpath(".//h2[5]/text()").get(default = "NA").strip()
+            manufacturer = vehicle_info.xpath(".//dl/dd//span//a[contains(@title, 'Vehicle Class')]/text()").get(default = "NA").strip()
         
             yield {
-                  "name": name
+                  "name":         name
                 , "manufacturer": manufacturer
             }            
-            
-            
-        # Increment Counter / Check if Counter is <= 3
-        # self.counter += 1
-        # if self.counter < 4:
 
-        # # Get Next Page URL & Callback parse_details
-        #     next_page = response.xpath("(//a[@title='Next'])[2]/@href").get()
-        #     if next_page:
-        #         absolute_url = f"https://www.gtabase.com/grand-theft-auto-v/vehicles/{next_page}"
-        #         yield SeleniumRequest(
-        #             url = absolute_url,
-        #             wait_time = 5,
-        #             callback = self.parse_details
-        #         )
-        #     else:
-        #         self.log("REACHED PAGE LIMIT, SPIDER STOPPED")
+        # Get Next Page URL & Callback parse_details
+        next_page = resp.xpath("(//a[@title='Next'])[2]/@href").get()
+        next_page_disabled = resp.xpath("//li[contains(@class, 'pages-item-next') and contains(@class, 'disabled')]")
+        
+        if next_page and not next_page_disabled:
+            absolute_url = f"https://www.gtabase.com/grand-theft-auto-v/vehicles/{next_page}"
+            absolute_url = absolute_url.replace("#", "?")
+            yield SeleniumRequest(
+                url       = absolute_url,
+                wait_time = 5,
+                callback  = self.parse_details
+            )
+        else:
+            self.log("REACHED PAGE LIMIT, SPIDER STOPPED")
         
     # Close Spider    
     def spider_closed(self, reason):
         self.driver.quit()
-
+        
+        
+    
          
      

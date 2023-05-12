@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 10
+DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -63,8 +63,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "gtabase.pipelines.GtabaseSqllitePipeline": 300,
-   "gtabase.pipelines.GtabaseCleanPipeline": 100
-   
+   "gtabase.pipelines.GtabaseCleanPipeline": 100   
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -96,7 +95,14 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 # Selenium
 from webdriver_manager.chrome import ChromeDriverManager
-
 SELENIUM_DRIVER_NAME = "chrome"
 SELENIUM_DRIVER_EXECUTABLE_PATH = ChromeDriverManager().install()
 SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox
+
+# Cloudflare
+DOWNLOADER_MIDDLEWARES = {
+    # The priority of 560 is important, because we want this middleware to kick in just before the scrapy built-in `RetryMiddleware`.
+    'scrapy_cloudflare_middleware.middlewares.CloudFlareMiddleware': 560
+}
+
+DUPEFILTER_CLASS = "scrapy.dupefilters.BaseDupeFilter"
