@@ -19,7 +19,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import time
 from selenium.webdriver.chrome.service import Service
-from concurrent.futures import ThreadPoolExecutor
 
 # Pandas Options ----
 pd.set_option('display.max_columns', None)
@@ -103,8 +102,8 @@ bike_details_list = []
 #sample_urls = bike_detail_urls[:2]
 
 start_time = time.time()
-print(f"Total Number of Bikes: {len(sample_urls)}")
-for index, url in enumerate(sample_urls, start = 1):
+print(f"Total Number of Bikes: {len(bike_detail_urls)}")
+for index, url in enumerate(bike_detail_urls, start = 1):
 
     driver = None
     try:
@@ -176,6 +175,11 @@ for index, url in enumerate(sample_urls, start = 1):
     finally:
         if driver:
             driver.quit()
+
+    # Sleep for 2 seconds
+    time.sleep(2)
+
+#! End of For Loop ----
 
 end_time = time.time()
 print("\n")
