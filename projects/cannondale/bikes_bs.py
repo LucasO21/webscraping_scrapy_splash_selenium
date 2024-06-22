@@ -21,6 +21,9 @@ import time
 from selenium.webdriver.chrome.service import Service
 from lxml import etree
 
+# Pandas Options ----
+pd.set_option('display.max_columns', None)
+
 # ------------------------------------------------------------------------------
 # STARTING
 # ------------------------------------------------------------------------------
@@ -99,11 +102,11 @@ bike_details_list = []
 # Sample URLs for Testing ----
 #sample_url = bike_detail_urls[:2]
 
+ print(f"Total Number of Bikes: {len(bike_detail_urls)}")
 for index, url in enumerate(bike_detail_urls, start = 1):
 
     driver = None
     try:
-        print(f"Total Number of Bikes: {len(bike_detail_urls)}")
         print("-----------------------------------------")
         print(f"Extracting details for Bike #{index}...")
         start_time = time.time()
@@ -169,4 +172,31 @@ len(bike_details_list)
 
 # DataFrame of Bike Details
 df = pd.DataFrame(bike_details_list)
+
+# Arrange Columns
+bike_columns_list = ['Platform',
+ 'Model Name',
+ 'price',
+ 'color',
+ 'Model Code',
+ 'Frame',
+ 'Fork',
+ 'Headset',
+ 'Front Hub',
+ 'Rear Hub',
+ 'Rims',
+ 'Spokes',
+ 'Tire Size',
+ 'Wheel Size',
+ 'Tires',
+ 'Handlebar',
+ 'Stem',
+ 'Grips',
+ 'Saddle',
+ 'Seatpost']
+
+df.info()
+
+# Add Image URLs to the DataFrame
+df["image_url"] = bike_image_urls
 
