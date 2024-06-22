@@ -8,6 +8,7 @@
 import pandas as pd
 import numpy as np
 import requests
+import time
 from bs4 import BeautifulSoup as BS
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -17,7 +18,6 @@ from selenium.webdriver.support.ui import WebDriverWait as WDW
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-import time
 from selenium.webdriver.chrome.service import Service
 
 # Pandas Options ----
@@ -51,19 +51,6 @@ soup = BS(driver.page_source, 'lxml')
 bike_card = soup.find_all('div', class_='product-card card filter-and-sort__product -has-3Q')
 
 len(bike_card)
-
-
-# Extract Image URLs from Each Bike Card ----
-bike_image_urls = []
-for card in bike_card:
-    try:
-        img_url = card.find('img')['src']
-    except:
-        pass
-
-    bike_image_urls.append(img_url)
-
-len(bike_image_urls)
 
 
 # Bike Hrefs for Each Bike Card ----
@@ -204,13 +191,16 @@ def get_bike_image_url(soup):
 # EXTACT BIKE DETAILS ----
 # ------------------------------------------------------------------------------
 
-# Empty List to Hold Bike Details Dictionaries ----
-bike_details_list = []
-
 # Sample URLs for Testing ----
 # sample_urls = bike_detail_urls[:5]
 # url = bike_detail_urls[26]
 
+
+# Empty List to Hold Bike Details Dictionaries ----
+bike_details_list = []
+
+
+# Start For Loop for Scraping Details of All 216 Bike URLs (will take about 30 mins) ----
 start_time = time.time()
 print(f"Total Number of Bikes: {len(bike_detail_urls)}")
 for index, url in enumerate(bike_detail_urls, start = 1):
@@ -270,7 +260,7 @@ for index, url in enumerate(bike_detail_urls, start = 1):
         dict_["price"] = price
         dict_["sale_price"] = sale_price
         dict_["color"] = color
-        dict_["bike_image_url"] = img_url
+        dict_["bike_image_url"] = bike_image_url
 
         # Add Description 1, 2, 3 and Highlights to the Dictionary
         dict_["description_1"] = get_bike_description_1(bike_page_soup)
@@ -303,14 +293,31 @@ print(f"Total Time Taken: {end_time - start_time:.2f} seconds.")
 # Length of Bike Details List
 len(bike_details_list)
 
-# DataFrame of Bike Details
+# DataFrame of Bike Details ----
 df = pd.DataFrame(bike_details_list).rename(columns = lambda x: x.replace(" ", "_").lower())
 df.info()
 
-# Drop Unnecessary Columns
-df.head()
+
+# ! IMPORTANT SECTION! Fix Sale Price Columns (Swap Sale Price with Price) ----
+
+# Get Column Names to Keep Column Order
+column_names = df.columns
+
+
+# New Price Columns
+df['new_price'] = np.where(df['sale_price'].notna(), df['sale_price'], df['price'])
+df['new_sales_price'] = np.where(df['sale_price'].notna(), df['price'], df['sale_price'])
+
+
+# Drop Old Columns and Rename New Columns
+df.drop(['price', 'sale_price'], axis=1, inplace=True)
+df.rename(columns={'new_price': 'price', 'new_sales_price': 'sale_price'}, inplace=True)
+
+
+# Rearrange Columns
+df_final = df[column_names]
 
 
 # Save DataFrame to CSV
-df.to_csv("projects/cannondale/data/bikes_with_beautifulsoup_v2.csv", index=False)
+df.to_csv("projects/cannondale/data/bikes_with_beautifulsoup_70.csv", index=False)
 
