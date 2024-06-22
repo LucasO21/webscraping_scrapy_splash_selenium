@@ -195,8 +195,9 @@ df = pd.DataFrame(bike_details_list)
 df.info()
 
 # Drop Unnecessary Columns
+df.head()
 
 
 # Save DataFrame to CSV
-df.to_csv("projects/cannondale/data/bikes_with_beautifulsoup_v1.csv", index=False)
+df.to_csv("projects/cannondale/data/bikes_with_beautifulsoup_v2.csv", index=False)
 
