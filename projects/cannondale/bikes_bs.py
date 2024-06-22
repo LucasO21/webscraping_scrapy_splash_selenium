@@ -319,5 +319,5 @@ df_final = df[column_names]
 
 
 # Save DataFrame to CSV
-df.to_csv("projects/cannondale/data/bikes_with_beautifulsoup_70.csv", index=False)
+df_final.to_csv("projects/cannondale/data/bikes_with_beautifulsoup_final.csv", index=False)
 
