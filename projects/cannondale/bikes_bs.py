@@ -24,7 +24,7 @@ from selenium.webdriver.chrome.service import Service
 pd.set_option('display.max_columns', None)
 
 # ------------------------------------------------------------------------------
-# STARTING
+# STARTING URL
 # ------------------------------------------------------------------------------
 
 # Headless Option ----
@@ -81,8 +81,10 @@ len(bike_detail_urls)
 
 
 # ------------------------------------------------------------------------------
-# FUNCTION TO GET BIKE DETAILS ----
+# FUNCTIONS TO GET BIKE DETAILS ----
 # ------------------------------------------------------------------------------
+
+# Function to Get Bike Description ----
 def get_bike_feature_details(soup, text):
     try:
         value = soup.find("strong", string=text).parent.find("div", class_="desc").text.strip()
@@ -90,6 +92,113 @@ def get_bike_feature_details(soup, text):
         value = np.nan
     return value
 
+# Function to Get Bike Description 1 ----
+def get_bike_description_1(soup):
+    try:
+        value = soup.find('div', class_ = "highlights thrives-built")
+    except:
+        value = np.nan
+
+    try:
+        heading = value.find("h3").text.strip()
+    except:
+        heading = ""
+
+    try:
+        text = value.find("p").text.strip()
+    except:
+        text = ""
+
+    full_description = f"{heading} : {text}"
+
+    return full_description
+
+# Function to Get Bike Description 2 ----
+def get_bike_description_2(soup):
+    try:
+        value = soup.find('div', class_ = "highlights thrives-built")
+    except:
+        value = np.nan
+
+    try:
+        heading = value.find_all("h3")[1].text.strip()
+    except:
+        heading = ""
+
+    try:
+        text = value.find_all("p")[1].text.strip()
+    except:
+        text = ""
+
+    full_description = f"{heading} : {text}"
+
+    return full_description
+
+# Function to Get Bike Description 3 ----
+def get_bike_description_3(soup):
+    try:
+        value = soup.find('div', class_ = "highlights thrives-built")
+    except:
+        value = np.nan
+
+    try:
+        heading = value.find_all("h3")[2].text.strip()
+    except:
+        heading = ""
+
+    try:
+        text = value.find_all("p")[2].text.strip()
+    except:
+        text = ""
+
+    full_description = f"{heading} : {text}"
+
+    return full_description
+
+# Function to Get Bike Highlights ----
+def get_bike_highlights(soup):
+
+    try:
+        highlights = soup.select_one('div.highlights:not(.thrives-built)') # using css selector to get the `highlights` div
+        li = highlights.find_all('li') # getting all the `li` tags
+        li_text_joined = "; ".join([item.text for item in li]) # joining the text of all the `li` tags
+    except:
+        li_text_joined = np.nan
+
+    return li_text_joined
+
+# Function to Get Price ----
+def get_bike_price(soup, sale_price=False):
+    try:
+        price = soup.find('div', class_='bike-configuration__price').text
+    except:
+        price = np.nan
+
+    price_list = [price for price in price.split("$") if price]
+
+    if sale_price:
+        return price_list[1] if len(price_list) > 1 else np.nan
+    else:
+        return price_list[0]
+
+# Function to Get Bike Image URL ----
+def get_bike_color(soup):
+    try:
+        color_span = bike_page_soup.find('span', class_=lambda x: x and "pdp__color-select" in x and "color" in x)
+        color = color_span['data-color'] if color_span and 'data-color' in color_span.attrs else np.nan
+    except:
+        color = np.nan
+
+    return color
+
+# Function to Get Bike Image URL ----
+def get_bike_image_url(soup):
+    try:
+        img_url = bike_page_soup.find('picture').find('img')['src']
+    except:
+        img_url = np.nan
+
+    return img_url
 
 # ------------------------------------------------------------------------------
 # EXTACT BIKE DETAILS ----
@@ -99,7 +208,8 @@ def get_bike_feature_details(soup, text):
 bike_details_list = []
 
 # Sample URLs for Testing ----
-#sample_urls = bike_detail_urls[:2]
+# sample_urls = bike_detail_urls[:5]
+# url = bike_detail_urls[26]
 
 start_time = time.time()
 print(f"Total Number of Bikes: {len(bike_detail_urls)}")
@@ -130,10 +240,15 @@ for index, url in enumerate(bike_detail_urls, start = 1):
         # Get The Bike Feature Names
         bike_features_text_list = [tag.text for tag in bike_features_tags_list]
 
-        # Add `price` and `color` to The Bike Feature Names
+        # Add price, color, description_1, description_2, description_3, highlights to the list
         bike_features_text_list.insert(2, "price")
-        bike_features_text_list.insert(3, "color")
-        bike_features_text_list.insert(len(bike_features_text_list), "image_url")
+        bike_features_text_list.insert(3, "sale_price")
+        bike_features_text_list.insert(4, "color")
+        bike_features_text_list.insert(5, "description_1")
+        bike_features_text_list.insert(6, "description_2")
+        bike_features_text_list.insert(7, "description_3")
+        bike_features_text_list.insert(8, "highlights")
+        bike_features_text_list.insert(len(bike_features_text_list), "bike_image_url")
 
         # Extract All Other Bike Features
         dict_ = {}
@@ -142,28 +257,26 @@ for index, url in enumerate(bike_detail_urls, start = 1):
             dict_[feature] = value
 
         # Get Bike Price. (Price is not in the bike_features_text_list and must be extracted separately)
-        try:
-            price = bike_page_soup.find('div', class_='bike-configuration__price').text
-        except:
-            price = np.nan
+        price = get_bike_price(bike_page_soup)
+        sale_price = get_bike_price(bike_page_soup, sale_price=True)
 
         # Get Bike Color (Color is not in the bike_features_text_list and must be extracted separately)
-        try:
-            color_span = bike_page_soup.find('span', class_=lambda x: x and "pdp__color-select" in x and "color" in x)
-            color = color_span['data-color'] if color_span and 'data-color' in color_span.attrs else np.nan
-        except:
-            color = np.nan
+        color = get_bike_color(bike_page_soup)
 
         # Get Bike Image URL
-        try:
-            img_url = bike_page_soup.find('picture').find('img')['src']
-        except:
-            img_url = np.nan
+        bike_image_url = get_bike_image_url(bike_page_soup)
 
         # Add Price and Color to the Dictionary
         dict_["price"] = price
+        dict_["sale_price"] = sale_price
         dict_["color"] = color
-        dict_["image_url"] = img_url
+        dict_["bike_image_url"] = img_url
+
+        # Add Description 1, 2, 3 and Highlights to the Dictionary
+        dict_["description_1"] = get_bike_description_1(bike_page_soup)
+        dict_["description_2"] = get_bike_description_2(bike_page_soup)
+        dict_["description_3"] = get_bike_description_3(bike_page_soup)
+        dict_["highlights"] = get_bike_highlights(bike_page_soup)
 
         # Append the Dictionary to the List
         bike_details_list.append(dict_)
@@ -191,7 +304,7 @@ print(f"Total Time Taken: {end_time - start_time:.2f} seconds.")
 len(bike_details_list)
 
 # DataFrame of Bike Details
-df = pd.DataFrame(bike_details_list)
+df = pd.DataFrame(bike_details_list).rename(columns = lambda x: x.replace(" ", "_").lower())
 df.info()
 
 # Drop Unnecessary Columns
