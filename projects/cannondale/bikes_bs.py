@@ -1,4 +1,10 @@
-# Imports
+
+
+# ------------------------------------------------------------------------------
+# SETUP ----
+# ------------------------------------------------------------------------------
+
+# Libraries ----
 import pandas as pd
 import numpy as np
 import requests
@@ -15,87 +21,66 @@ import time
 from selenium.webdriver.chrome.service import Service
 from lxml import etree
 
+# ------------------------------------------------------------------------------
+# STARTING
+# ------------------------------------------------------------------------------
 
-# Headless Option
+# Headless Option ----
 options = Options()
 options.add_argument("--headless")
 
-# Driver
+
+# Get Driver ----
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
 driver.get("https://www.cannondale.com/en-us/bikes")
 
-# Wait
+
+# Wait For Elements to Load ----
 element = WDW(driver, 20).until(EC.presence_of_element_located((
     By.XPATH, '//div[@class="product-card card filter-and-sort__product -has-3Q "]'
 )))
 
-# Page HTML
+# Get Page HTML ----
 soup = BS(driver.page_source, 'lxml')
 
-# Bike Cards
+
+# Get All Bike Cards ----
 bike_card = soup.find_all('div', class_='product-card card filter-and-sort__product -has-3Q')
 
+len(bike_card)
 
-# Bike Hrefs
-bike_urls = []
+
+# Extract Image URLs from Each Bike Card ----
+bike_image_urls = []
 for card in bike_card:
-    url = card.find('a')['href']
-    full_url = f"https://www.cannondale.com{url}"
-    bike_urls.append(full_url)
-
-
-# Bike Details from Each Bike URL
-sample_url = bike_urls[0]
-
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
-driver.get(sample_url)
-
-# Wait
-element = WDW(driver, 20).until(EC.presence_of_element_located((
-    By.XPATH, '//h1[@class="headline bike-configuration__headline"]'
-)))
-
-def get_bike_details(soup, html, class_):
-
     try:
-        value = soup.find(html, class_=class_)
+        img_url = card.find('img')['src']
     except:
-        value = np.nan
-    return value
+        pass
+
+    bike_image_urls.append(img_url)
+
+len(bike_image_urls)
 
 
-# Page HTML
-bike_page_soup = BS(driver.page_source, 'lxml')
+# Bike Hrefs for Each Bike Card ----
+bike_detail_urls = []
+for card in bike_card:
+    try:
+        url = card.find('a')['href']
+        full_url = f"https://www.cannondale.com{url}"
+    except:
+        pass
 
-header = bike_page_soup.find('h1', class_='headline bike-configuration__headline').text.split("\n")
-header = [item.strip() for item in header if item.strip() != '']
-bike_name = header[0]
-bike_model = header[1]
+    bike_detail_urls.append(full_url)
 
-header = get_bike_details(bike_page_soup, 'h1', 'headline bike-configuration__headline').text
-bike_name = [item.strip() for item in header.split("\n") if item.strip() != ''][0]
-bike_model = [item.strip() for item in header.split("\n") if item.strip() != ''][1]
-
-price = get_bike_details(bike_page_soup, 'div', 'bike-configuration__price').text
-color = get_bike_details(bike_page_soup, 'span', 'pdp__color-select color swatch-bpt active')["data-color"]
-
-bike_page_soup.find("li", class_ = "specs-list-item").find("strong", class_ = "name").text
-
-bike_page_soup.find("li", class_ = "specs-list-item")
+len(bike_detail_urls)
 
 
-parent_div = bike_page_soup.find('strong', text='Model Code').parent
-model_code_div = parent_div.find('div', class_='desc').text
-
-name = bike_page_soup.find('strong', text='Platform').parent.find("div", class_="desc").text.strip()
-model = bike_page_soup.find('strong', text='Model Name').parent.find("div", class_="desc").text.strip().strip(name)
-code = bike_page_soup.find('strong', text='Model Code').parent.find("div", class_="desc").text.strip()
-frame = bike_page_soup.find('strong', text='Frame').parent.find("div", class_="desc").text.strip()
-fork = bike_page_soup.find('strong', text='Fork').parent.find("div", class_="desc").text.strip()
-
-
+# ------------------------------------------------------------------------------
+# FUNCTION TO GET BIKE DETAILS ----
+# ------------------------------------------------------------------------------
 def get_bike_details(soup, text):
     try:
         value = soup.find("strong", string=text).parent.find("div", class_="desc").text.strip()
@@ -104,31 +89,84 @@ def get_bike_details(soup, text):
     return value
 
 
-name = get_bike_details(bike_page_soup, 'Platform')
-model = get_bike_details(bike_page_soup, 'Model Name')
-code = get_bike_details(bike_page_soup, 'Model Code')
-frame = get_bike_details(bike_page_soup, 'Frame')
-form = get_bike_details(bike_page_soup, 'Fork')
-headset = get_bike_details(bike_page_soup, 'Headset')
-rear_derailleur = get_bike_details(bike_page_soup, 'Rear Derailleur')
-front_derailleur = get_bike_details(bike_page_soup, 'Front Derailleur')
-shifters = get_bike_details(bike_page_soup, 'Shifters')
-chain = get_bike_details(bike_page_soup, 'Chain')
-crank = get_bike_details(bike_page_soup, 'Crank')
-rear_cogs = get_bike_details(bike_page_soup, 'Rear Cogs')
-botton_bracket = get_bike_details(bike_page_soup, 'Bottom Bracket')
+# ------------------------------------------------------------------------------
+# EXTACT BIKE DETAILS ----
+# ------------------------------------------------------------------------------
 
+# Empty List to Hold Bike Details Dictionaries ----
+bike_details_list = []
 
+# Sample URLs for Testing ----
+#sample_url = bike_detail_urls[:2]
 
+for index, url in enumerate(bike_detail_urls, start = 1):
 
-bike_features_tags_list = bike_page_soup.find_all("strong", class_="name")
-bike_features_text_list = [tag.text for tag in bike_features_tags_list]
+    driver = None
+    try:
+        print(f"Total Number of Bikes: {len(bike_detail_urls)}")
+        print("-----------------------------------------")
+        print(f"Extracting details for Bike #{index}...")
+        start_time = time.time()
 
-df = pd.DataFrame(columns=bike_features_text_list)
+        # Get Headless Driver
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+        driver.get(url)
 
-for feature in bike_features_text_list:
-    value = get_bike_details(bike_page_soup, feature)
-    df[feature] = [value]
+        # Wait For Elements to Load
+        element = WDW(driver, 20).until(EC.presence_of_element_located((
+            By.XPATH, '//h1[@class="headline bike-configuration__headline"]'
+        )))
 
+        # Get Page HTML
+        bike_page_soup = BS(driver.page_source, 'lxml')
 
-df
+        # Get The Bike Feature Name HTML Tags
+        bike_features_tags_list = bike_page_soup.find_all("strong", class_="name")
+
+        # Get The Bike Feature Names
+        bike_features_text_list = [tag.text for tag in bike_features_tags_list]
+
+        # Add `price` and `color` to The Bike Feature Names
+        bike_features_text_list.insert(2, "price")
+        bike_features_text_list.insert(3, "color")
+
+        # Extract All Other Bike Features
+        dict_ = {}
+        for feature in bike_features_text_list:
+            value = get_bike_details(bike_page_soup, feature)
+            dict_[feature] = value
+
+        # Get Bike Price. (Price is not in the bike_features_text_list and must be extracted separately)
+        try:
+            price = bike_page_soup.find('div', class_='bike-configuration__price').text
+        except:
+            price = np.nan
+
+        # Get Bike Color (Color is not in the bike_features_text_list and must be extracted separately)
+        try:
+            color = bike_page_soup.find('span', class_='pdp__color-select color swatch-mox active')["data-color"]
+        except:
+            color = np.nan
+
+        # Add Price and Color to the Dictionary
+        dict_["price"] = price
+        dict_["color"] = color
+
+        # Append the Dictionary to the List
+        bike_details_list.append(dict_)
+
+        end_time = time.time()
+        print(f"Completed extraction for Bike #{index}. Time taken: {end_time - start_time:.2f} seconds.")
+
+    # Close the Driver
+    finally:
+        if driver:
+            driver.quit()
+
+# Length of Bike Details List
+len(bike_details_list)
+
+# DataFrame of Bike Details
+df = pd.DataFrame(bike_details_list)
+
