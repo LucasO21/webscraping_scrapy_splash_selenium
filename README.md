@@ -2,7 +2,7 @@
 
 ====================================================================================
 
-This repository contains code and resources for learning web scraping with Scrapy Splash and Selenium in Python. The code examples are a combination of resources from the Udemy course [Modern Web Scraping with Python using Scrapy Splash Selenium]("https://www.udemy.com/course/web-scraping-in-python-using-scrapy-and-splash/") and personal projects.
+This repository contains code and resources for learning web scraping with Scrapy Splash and Selenium in Python. The code examples are a combination of resources from the Udemy course [Modern Web Scraping with Python using Scrapy Splash Selenium]("https://www.udemy.com/course/web-scraping-in-python-using-scrapy-and-splash/") and personal projects. See ```tutorials``` folder for code from course lectures and ```projects``` for personal projects.
 
 ## Getting Started
 
@@ -10,12 +10,17 @@ If you would like to reproduce some of these projects, you will need to have [Py
 
 ```python3 -m venv env```
 
-## Requirements
+## Requirements & Dependencies
 
-See  ```requirements.txt```  file for Python packages/versions used in this project. To install the same set of packages, use the following command:
+[Poetry](https://python-poetry.org/) is a tool for dependency management and packaging in Python. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
 
-```pip install -r requirments.txt```
+* Installing Poetry: ```pipx install poetry```.
+* Create a Virtual Env with Poetry: ```poetry init``` (follow on screen instructions).
+* Install Dependencies: ```poetry Install```.
+* You can also just get the package versions from the ```pyproject.toml``` file and install in your python environment.
 
-## Contributing
+Helpful resources on installing/configuring Poetry:
 
-This repo is a personal project. However feel free to fork the repository and adapt code examples to your own projects. For any issues, feel free to open an issue.
+* How to Create and Use Virtual Environments in Python with Poetry (YouTube): [Link](https://youtu.be/0f3moPe_bhk?si=CwkIsV07rd9R8N_c).
+
+* Setup VS Code for Python with Pyenv and Poetry: [Link](https://youtu.be/547Jr26duHQ?si=DHu92GUfEyU6MF7N).

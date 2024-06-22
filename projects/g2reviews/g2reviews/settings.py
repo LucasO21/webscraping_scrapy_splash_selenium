@@ -1,4 +1,4 @@
-# Scrapy settings for us_stocks project
+# Scrapy settings for g2reviews project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "us_stocks"
+BOT_NAME = "g2reviews"
 
-SPIDER_MODULES = ["us_stocks.spiders"]
-NEWSPIDER_MODULE = "us_stocks.spiders"
+SPIDER_MODULES = ["g2reviews.spiders"]
+NEWSPIDER_MODULE = "g2reviews.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "us_stocks (+http://www.yourdomain.com)"
+#USER_AGENT = "gtabase (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -61,13 +61,14 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "us_stocks.pipelines.UsStocksPipeline": 300,
-#}
+# ITEM_PIPELINES = {
+#    "gtabase.pipelines.GtabaseSqllitePipeline": 300,
+#    "gtabase.pipelines.GtabaseCleanPipeline": 100   
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_ENABLED = True
 # The initial download delay
 #AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
@@ -94,12 +95,14 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 # Selenium
 from webdriver_manager.chrome import ChromeDriverManager
-
 SELENIUM_DRIVER_NAME = "chrome"
-#SELENIUM_DRIVER_EXECUTABLE_PATH = "../chromedriver"
 SELENIUM_DRIVER_EXECUTABLE_PATH = ChromeDriverManager().install()
 SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox
 
+# Cloudflare
+DOWNLOADER_MIDDLEWARES = {
+    # The priority of 560 is important, because we want this middleware to kick in just before the scrapy built-in `RetryMiddleware`.
+    'scrapy_cloudflare_middleware.middlewares.CloudFlareMiddleware': 560
+}
 
-
-
+DUPEFILTER_CLASS = "scrapy.dupefilters.BaseDupeFilter"
