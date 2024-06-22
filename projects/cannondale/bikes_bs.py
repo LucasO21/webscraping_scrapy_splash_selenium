@@ -19,7 +19,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import time
 from selenium.webdriver.chrome.service import Service
-from lxml import etree
+from concurrent.futures import ThreadPoolExecutor
 
 # Pandas Options ----
 pd.set_option('display.max_columns', None)
@@ -84,7 +84,7 @@ len(bike_detail_urls)
 # ------------------------------------------------------------------------------
 # FUNCTION TO GET BIKE DETAILS ----
 # ------------------------------------------------------------------------------
-def get_bike_details(soup, text):
+def get_bike_feature_details(soup, text):
     try:
         value = soup.find("strong", string=text).parent.find("div", class_="desc").text.strip()
     except:
@@ -100,16 +100,17 @@ def get_bike_details(soup, text):
 bike_details_list = []
 
 # Sample URLs for Testing ----
-#sample_url = bike_detail_urls[:2]
+#sample_urls = bike_detail_urls[:2]
 
- print(f"Total Number of Bikes: {len(bike_detail_urls)}")
-for index, url in enumerate(bike_detail_urls, start = 1):
+start_time = time.time()
+print(f"Total Number of Bikes: {len(sample_urls)}")
+for index, url in enumerate(sample_urls, start = 1):
 
     driver = None
     try:
         print("-----------------------------------------")
         print(f"Extracting details for Bike #{index}...")
-        start_time = time.time()
+        start_time_ = time.time()
 
         # Get Headless Driver
         service = Service(ChromeDriverManager().install())
@@ -133,11 +134,12 @@ for index, url in enumerate(bike_detail_urls, start = 1):
         # Add `price` and `color` to The Bike Feature Names
         bike_features_text_list.insert(2, "price")
         bike_features_text_list.insert(3, "color")
+        bike_features_text_list.insert(len(bike_features_text_list), "image_url")
 
         # Extract All Other Bike Features
         dict_ = {}
         for feature in bike_features_text_list:
-            value = get_bike_details(bike_page_soup, feature)
+            value = get_bike_feature_details(bike_page_soup, feature)
             dict_[feature] = value
 
         # Get Bike Price. (Price is not in the bike_features_text_list and must be extracted separately)
@@ -148,55 +150,49 @@ for index, url in enumerate(bike_detail_urls, start = 1):
 
         # Get Bike Color (Color is not in the bike_features_text_list and must be extracted separately)
         try:
-            color = bike_page_soup.find('span', class_='pdp__color-select color swatch-mox active')["data-color"]
+            color_span = bike_page_soup.find('span', class_=lambda x: x and "pdp__color-select" in x and "color" in x)
+            color = color_span['data-color'] if color_span and 'data-color' in color_span.attrs else np.nan
         except:
             color = np.nan
+
+        # Get Bike Image URL
+        try:
+            img_url = bike_page_soup.find('picture').find('img')['src']
+        except:
+            img_url = np.nan
 
         # Add Price and Color to the Dictionary
         dict_["price"] = price
         dict_["color"] = color
+        dict_["image_url"] = img_url
 
         # Append the Dictionary to the List
         bike_details_list.append(dict_)
 
-        end_time = time.time()
-        print(f"Completed extraction for Bike #{index}. Time taken: {end_time - start_time:.2f} seconds.")
+        end_time_ = time.time()
+        print(f"Completed extraction for Bike #{index}. Time taken: {end_time_ - start_time_:.2f} seconds.")
 
     # Close the Driver
     finally:
         if driver:
             driver.quit()
 
+end_time = time.time()
+print("\n")
+print("-----------------------------------------")
+print(f"Total Time Taken: {end_time - start_time:.2f} seconds.")
+
+
 # Length of Bike Details List
 len(bike_details_list)
 
 # DataFrame of Bike Details
 df = pd.DataFrame(bike_details_list)
-
-# Arrange Columns
-bike_columns_list = ['Platform',
- 'Model Name',
- 'price',
- 'color',
- 'Model Code',
- 'Frame',
- 'Fork',
- 'Headset',
- 'Front Hub',
- 'Rear Hub',
- 'Rims',
- 'Spokes',
- 'Tire Size',
- 'Wheel Size',
- 'Tires',
- 'Handlebar',
- 'Stem',
- 'Grips',
- 'Saddle',
- 'Seatpost']
-
 df.info()
 
-# Add Image URLs to the DataFrame
-df["image_url"] = bike_image_urls
+# Drop Unnecessary Columns
+
+
+# Save DataFrame to CSV
+df.to_csv("projects/cannondale/data/bikes_with_beautifulsoup_v1.csv", index=False)
 
